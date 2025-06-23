@@ -1,0 +1,57 @@
+# -----------------------------------------------------------------------------
+# GitHub Actions Workflow: Terraform CloudFront CDN
+#
+# Purpose:
+# - Automatically deploys / updates AWS S3 + CloudFront (CDN) infrastructure
+# - Executes Terraform inside 'infra/cloudfront/' folder
+#
+# Trigger:
+# - Runs when you push changes to 'infra/cloudfront/**' files
+#
+# Flow:
+# 1️⃣ Checkout repo code
+# 2️⃣ Setup Terraform CLI
+# 3️⃣ Run 'terraform init' to initialize Terraform
+# 4️⃣ Run 'terraform plan' to preview changes
+# 5️⃣ Run 'terraform apply' to apply changes (auto-approve)
+#
+# Notes:
+# - AWS credentials are passed from GitHub Secrets
+# - No need to run Terraform manually — pipeline handles it
+# - Ensures consistent and automated IaC (Infrastructure as Code) for your CDN
+# -----------------------------------------------------------------------------
+
+name: Terraform CloudFront CDN
+
+on:
+  push:
+    paths:
+      - 'infra/cloudfront/**'
+
+jobs:
+  terraform:
+    name: Terraform Apply
+    runs-on: ubuntu-latest
+
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_REGION: us-east-1
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.8.2
+
+      - name: Terraform Init
+        run: cd infra/cloudfront && terraform init
+
+      - name: Terraform Plan
+        run: cd infra/cloudfront && terraform plan
+
+      - name: Terraform Apply
+        run: cd infra/cloudfront && terraform apply -auto-approve
