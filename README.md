@@ -1,12 +1,3 @@
-Perfect — this is a great way to build a **real project** — you will:
-✅ Write Terraform to build S3 + CloudFront
-✅ Push to GitHub
-✅ Have GitHub Actions run Terraform automatically
-
-I’ll give you the **full step-by-step beginner-friendly guide** 🚀:
-
----
-
 # 🛠️ How to Build S3 + CloudFront CDN — Fully Automated with Terraform + GitHub Actions
 
 ---
@@ -225,22 +216,4 @@ https://d1234.cloudfront.net
 
 ---
 
-## Final Recap:
 
-By the end — you will have:
-
-✅ S3 Bucket for static app
-✅ CloudFront CDN with SSL
-✅ GitHub Actions to deploy automatically
-✅ Prometheus-ready metrics
-✅ No manual steps — pure CI/CD
-✅ Real production-grade example for your course 🚀
-
----
-
-### 🚀 Would you like me to also generate:
-
-✅ A full student lab sheet — so they can follow step by step?
-✅ A polished "Section 3.7: CDN Observability — Live Build" with this full flow?
-
-Just say **GO** 🚀 — I can prepare it for you fast — this will really impress your audience!
